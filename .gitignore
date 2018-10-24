@@ -1,0 +1,5 @@
+env
+homedir
+config.py
+*.pyc
+*.swp

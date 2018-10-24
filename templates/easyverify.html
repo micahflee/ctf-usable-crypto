@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+    <head>
+        <title>EasyVerify</title>
+
+<style>
+body { font-family: sans-serif }
+.red, .orange, .yellow, .green, .blue, .indigo, .violet { font-weight: bold }
+.red { color: red }
+.orange { color: orange }
+.yellow { color: yellow }
+.green { color: green }
+.blue { color: blue }
+.indigo { color: indigo }
+.violet { color: violet }
+textarea { width: 600px; height: 300px; }
+.error { background-color: red; color: white; padding: 1em; }
+.result { background-color: black; color: white; padding: 1em; }
+</style>
+
+    </head>
+    <body>
+        <h1>EasyVerify</h1>
+        <p>PGP fingerprints are stupid. They're long and annoying, like this: <code>927F 419D 7EC8 2C2F 149C  1BD1 403C 2657 CD99 4F73</code></p>
+        <p>Who wants to read all of that stuff out loud and compare each and every digit just to verify that your crypto is working? Who can possibly memorize that? We believe there's a better way. Instead of convoluted and unfriendly 40-character fingerprints, why not reduce your entire fingerprint to something simpler: a color. WHY NOT?</p>
+        <p>There are countless colors in the rainbow: <span class="red">red</span>, <span class="orange">orange</span>, <span class="yellow">yellow</span>, <span class="green">green</span>, <span class="blue">blue</span>, <span class="indigo">indigo</span>, <span class="violet">violet</span>. With EasyVerify, we can represent your PGP key using any one of them!</p>
+        <hr>
+        <p>Submit your PGP public key to see what color it is. If someone needs to verify your fingerprint, all they need to do is check to make sure it's the same color you told them it would be.</p>
+
+        {% if error %} <p class="error">{{error}}</p> {% endif %}
+        
+        {% if color %} <p class="result">Your PGP fingerprint is <code>{{fp}}</code>. Based on where this fingerprint falls in the visible light spectrum, its color is <span class="{{color}}">{{color}}</span>.</p> {% endif %}
+
+        <form method="post" action="/easyverify">
+            <p><textarea name="pubkey"></textarea></p>
+            <p><input type="submit" /></p>
+        </form>
+    </body>
+</html>
